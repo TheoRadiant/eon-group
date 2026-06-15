@@ -1,0 +1,346 @@
+<main class="site-shell">
+  <header class="hero" id="top">
+    <app-site-nav></app-site-nav>
+
+    <div class="hero__content">
+      <div class="hero__copy">
+        <p class="eyebrow" data-reveal style="--reveal-delay: 80ms">Σχεδιασμός ιστοσελίδων & ψηφιακή προώθηση στην Ελλάδα</p>
+        <h1 data-reveal style="--reveal-delay: 160ms">Ιστοσελίδες που ξεχωρίζουν <span>από 300€</span></h1>
+        <p class="hero__lead" data-reveal style="--reveal-delay: 260ms">
+          Μοντέρνες, προσαρμοστικές και φιλικές προς SEO ιστοσελίδες για επιχειρήσεις που θέλουν να φαίνονται επαγγελματικές από την πρώτη επίσκεψη.
+        </p>
+      </div>
+
+      <div class="hero__actions" aria-label="Βασικές ενέργειες" data-reveal style="--reveal-delay: 360ms">
+        <a class="button button--accent" href="#work">Δες δουλειές <span aria-hidden="true">↗</span></a>
+        <a class="button button--ghost" href="#pricing">Πακέτα από 300€ <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="agency-section" id="about" aria-labelledby="about-title">
+    <div class="agency-section__copy">
+      <p class="section-label" data-reveal>Η εταιρεία</p>
+      <h2 id="about-title" data-reveal style="--reveal-delay: 110ms">
+        EON Group <span>σχεδιάζει ιστοσελίδες για μικρές και μεσαίες επιχειρήσεις στην Ελλάδα που χρειάζονται καθαρή εικόνα, γρήγορη υλοποίηση και πρακτική σκέψη προώθησης.</span>
+      </h2>
+    </div>
+
+    <div class="agency-collage" aria-label="Οπτική σύνθεση ιστοσελίδας και υλικού προώθησης" data-reveal="visual" style="--reveal-delay: 180ms">
+      <div class="collage-card collage-card--back">
+        <div class="mini-window">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="chart-lines">
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+      </div>
+      <div class="collage-card collage-card--front">
+        <div class="mock-browser">
+          <div class="mock-browser__bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="mock-browser__hero"></div>
+          <div class="mock-browser__grid">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section" aria-labelledby="why-title">
+    <div class="section-intro why-section__intro">
+      <p class="section-label" data-reveal>Γιατί εμάς</p>
+      <h2 id="why-title" data-reveal style="--reveal-delay: 110ms">Καθαρή διαδικασία, δυνατή εικόνα και κόστος που βγάζει νόημα.</h2>
+      <p class="why-section__text" data-reveal style="--reveal-delay: 190ms">
+        Στήνουμε κάθε ιστοσελίδα σαν εργαλείο πωλήσεων: καθαρή πρώτη εντύπωση, σωστή ροή και βάση που μπορεί να εξελιχθεί μετά το λανσάρισμα.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      @for (item of whyItems; track item.title; let index = $index) {
+        <article class="why-card" data-reveal>
+          <span class="why-card__number">0{{ index + 1 }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="work-section" id="work" aria-labelledby="work-title">
+    <div class="work-header">
+      <p class="section-label" data-reveal>Έργα</p>
+      <h2 id="work-title" data-reveal style="--reveal-delay: 110ms">Έργα με <span>δομή</span>, <span>ταχύτητα</span><br>και <span>ξεκάθαρο σκοπό</span>.</h2>
+    </div>
+
+    <div class="work-list">
+      @for (project of projects; track project.number; let odd = $odd) {
+        <article class="work-item" [class.work-item--reverse]="odd">
+          <div class="project-visual" [class]="'project-visual project-visual--' + project.visual" data-reveal="visual">
+            <div class="screen-shell">
+              <div class="screen-shell__top">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="screen-shell__body" [class.screen-shell__body--image]="project.image">
+                @if (project.image) {
+                  <img class="screen-image" [src]="project.image" [alt]="project.imageAlt ?? project.name">
+                } @else {
+                  <div class="screen-hero"></div>
+                  <div class="screen-copy">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+                  <div class="screen-tiles">
+                    <b></b>
+                    <b></b>
+                    <b></b>
+                  </div>
+                }
+              </div>
+            </div>
+            @if (project.link) {
+              <a
+                class="project-visual__link"
+                [href]="project.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="'Δείτε το project ' + project.name"
+              >
+                <span class="project-visual__button">Δείτε το Project <span aria-hidden="true">↗</span></span>
+              </a>
+            }
+          </div>
+
+          <div class="work-info" data-reveal>
+            <p class="work-number">{{ project.number }}</p>
+            <div>
+              <h3>{{ project.name }}</h3>
+              <p class="work-tags">{{ project.tags }}</p>
+            </div>
+            <p class="work-description">{{ project.description }}</p>
+            <a
+              class="text-link"
+              [href]="project.link ?? '#contact'"
+              [attr.target]="project.link ? '_blank' : null"
+              [attr.rel]="project.link ? 'noopener noreferrer' : null"
+            >
+              {{ project.linkLabel ?? 'Συζήτησε παρόμοιο project' }} <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="services-section" id="services" aria-labelledby="services-title">
+    <div class="services-heading">
+      <div class="services-heading__copy">
+        <p class="section-label section-label--dark" data-reveal>Υπηρεσίες</p>
+        <h2 id="services-title" data-reveal style="--reveal-delay: 110ms">Υπηρεσίες</h2>
+      </div>
+      <a class="button button--accent services-heading__cta" href="#contact" data-reveal style="--reveal-delay: 190ms">Ζήτησε πρόταση <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <div class="services-list">
+      @for (service of services; track service.name) {
+        <a
+          class="service-row"
+          [routerLink]="['/ypiresies', service.slug]"
+          data-reveal
+          (mouseenter)="showServiceCursor($event)"
+          (mousemove)="moveServiceCursor($event)"
+          (mouseleave)="hideServiceCursor()"
+        >
+          <h3>{{ service.name }}</h3>
+          <span class="service-row__divider" aria-hidden="true"></span>
+          <p>{{ service.description }}</p>
+        </a>
+      }
+    </div>
+
+    <div
+      class="service-hover-cursor"
+      [class.is-visible]="serviceCursor.visible"
+      [style.left.px]="serviceCursor.x"
+      [style.top.px]="serviceCursor.y"
+      aria-hidden="true"
+    >
+      Μάθετε Περισσότερα
+    </div>
+  </section>
+
+  <section class="process-section" aria-labelledby="process-title">
+    <div class="section-intro section-intro--wide">
+      <p class="section-label" data-reveal>Διαδικασία</p>
+      <h2 id="process-title" data-reveal style="--reveal-delay: 110ms">Από την πρώτη ιδέα μέχρι το λανσάρισμα, χωρίς χάος.</h2>
+    </div>
+
+    <div class="process-list">
+      @for (step of process; track step.step) {
+        <article class="process-row" data-reveal>
+          <span>{{ step.step }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section
+    class="pricing-section"
+    id="pricing"
+    aria-labelledby="pricing-section-title"
+    [class.pricing-section--eshops]="selectedPricingCategory.theme === 'eshops'"
+    [class.pricing-section--support]="selectedPricingCategory.theme === 'support'"
+  >
+    <div class="pricing-heading" data-reveal>
+      <p class="section-label">Τιμές</p>
+      <h2 id="pricing-section-title">Πακέτα για ιστοσελίδες, eshop και υποστήριξη.</h2>
+      <p>Διάλεξε κατηγορία και δες τι περιλαμβάνει κάθε λύση, με ξεκάθαρη αρχική τιμή και χώρο για προσαρμογή.</p>
+    </div>
+
+    <div class="pricing-category-toggle" aria-label="Κατηγορίες πακέτων" data-reveal>
+      @for (category of pricingCategories; track category.name; let index = $index) {
+        <button
+          class="pricing-category-toggle__button"
+          [class.is-active]="selectedPricingCategoryIndex === index"
+          type="button"
+          (click)="selectPricingCategory(index)"
+        >
+          {{ category.name }}
+        </button>
+      }
+    </div>
+
+    <div
+      class="pricing-panel"
+      [class.pricing-panel--eshops]="selectedPricingCategory.theme === 'eshops'"
+      [class.pricing-panel--support]="selectedPricingCategory.theme === 'support'"
+      data-reveal="visual"
+    >
+      <div class="pricing-panel__copy">
+        <p class="section-label">{{ selectedPricingPackage.label }}</p>
+        <h2 id="pricing-title">{{ selectedPricingPackage.title }}</h2>
+        <p>{{ selectedPricingPackage.description }}</p>
+      </div>
+
+      <div class="pricing-control" aria-label="Επιλογή πακέτου">
+        <div class="pricing-control__options">
+          @for (pricingPackage of selectedPricingCategory.packages; track pricingPackage.name; let index = $index) {
+            <button
+              class="pricing-control__option"
+              [class.is-active]="selectedPricingIndex === index"
+              type="button"
+              (click)="selectPricingPackage(index)"
+            >
+              <span>{{ pricingPackage.name }}</span>
+              <strong>{{ pricingPackage.price }}</strong>
+            </button>
+          }
+        </div>
+
+        <input
+          class="pricing-slider"
+          type="range"
+          min="0"
+          [attr.max]="selectedPricingCategory.packages.length - 1"
+          step="1"
+          [value]="selectedPricingIndex"
+          [style.--pricing-progress]="(selectedPricingIndex * 50) + '%'"
+          [attr.aria-valuenow]="selectedPricingIndex"
+          [attr.aria-valuetext]="selectedPricingPackage.name + ' ' + selectedPricingPackage.price"
+          (input)="selectPricingPackage($any($event.target).valueAsNumber)"
+        >
+      </div>
+
+      <div class="pricing-includes" [attr.aria-label]="'Τι περιλαμβάνει το ' + selectedPricingPackage.name">
+        @for (feature of selectedPricingPackage.includes; track feature) {
+          <span>{{ feature }}</span>
+        }
+      </div>
+
+      <a class="button button--dark" href="#contact">Ζήτησε προσφορά <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <section class="testimonial-section" aria-labelledby="testimonial-title">
+    <p class="section-label" id="testimonial-title" data-reveal>Σχόλιο πελάτη</p>
+    <blockquote data-reveal style="--reveal-delay: 110ms">
+      “Θέλαμε κάτι απλό, γρήγορο και επαγγελματικό. Η EON Group μάς βοήθησε να βγούμε ψηφιακά με εικόνα που ταιριάζει στην επιχείρησή μας και χώρο για να μεγαλώσουμε.”
+    </blockquote>
+    <div class="testimonial-person" data-reveal style="--reveal-delay: 200ms">
+      <span aria-hidden="true">EG</span>
+      <div>
+        <p>Επιχείρηση στην Ελλάδα</p>
+        <small>Πακέτο λανσαρίσματος ιστοσελίδας</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="cta-title">
+    <h2 id="cta-title" data-reveal>Έχεις ιδέα για νέα ιστοσελίδα;</h2>
+    <a class="button button--dark" href="#contact" data-reveal style="--reveal-delay: 120ms">Μίλησέ μας <span aria-hidden="true">↗</span></a>
+  </section>
+
+  <section class="contact-section" id="contact" aria-labelledby="contact-title">
+    <div class="contact-copy">
+      <p class="section-label section-label--dark" data-reveal>Επικοινωνία</p>
+      <h2 id="contact-title" data-reveal style="--reveal-delay: 110ms">Ας ξεκινήσουμε το επόμενο project.</h2>
+      <p data-reveal style="--reveal-delay: 190ms">
+        Στείλε μας λίγες πληροφορίες για την επιχείρηση, τις υπηρεσίες και τον στόχο σου. Θα επιστρέψουμε με καθαρή πρόταση και επόμενα βήματα.
+      </p>
+      <div class="contact-details" data-reveal style="--reveal-delay: 260ms">
+        <a href="mailto:hello@eongroup.gr">hello@eongroup.gr</a>
+        <span>Greece · Remote συνεργασίες σε όλη την Ελλάδα</span>
+      </div>
+    </div>
+
+    <form class="contact-form" aria-label="Φόρμα επικοινωνίας" data-reveal="visual" style="--reveal-delay: 160ms">
+      <label>
+        Όνομα
+        <input type="text" name="name" autocomplete="name" placeholder="Το όνομά σου">
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+      </label>
+      <label>
+        Τι χρειάζεσαι;
+        <textarea name="message" rows="5" placeholder="Νέα ιστοσελίδα, ανασχεδιασμός, SEO, καμπάνιες..."></textarea>
+      </label>
+      <button class="button button--accent" type="button">Αποστολή ενδιαφέροντος <span aria-hidden="true">↗</span></button>
+    </form>
+  </section>
+
+  <footer class="footer" data-reveal>
+    <a class="brand" href="#top" aria-label="EON Group αρχική">
+      <span class="brand__name">EON</span>
+      <span class="brand__accent">Group</span>
+    </a>
+    <p>Σχεδιασμός ιστοσελίδων, προσαρμοστική υλοποίηση, δομή SEO και υποστήριξη ψηφιακής προώθησης για επιχειρήσεις στην Ελλάδα.</p>
+    <div class="footer__bottom">
+      <span>© 2026 EON Group. All rights reserved.</span>
+      <div>
+        <a href="#services">Υπηρεσίες</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Επικοινωνία</a>
+      </div>
+    </div>
+  </footer>
+</main>

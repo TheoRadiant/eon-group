@@ -1,0 +1,78 @@
+<nav class="nav" [class.nav--hidden]="navHidden" aria-label="Κύρια πλοήγηση">
+  <a class="brand" routerLink="/" aria-label="EON Group αρχική" (click)="closeMobileMenu()">
+    <span class="brand__name">EON</span>
+    <span class="brand__accent">Group</span>
+  </a>
+
+  <div class="nav__links">
+    <a routerLink="/about">Σχετικά</a>
+    <div class="nav__item nav__item--mega">
+      <a routerLink="/" fragment="services">Υπηρεσίες</a>
+      <div class="nav__mega" role="menu" aria-label="Υπηρεσίες">
+        <p>Όλες οι υπηρεσίες</p>
+        @for (service of services; track service.slug) {
+          <a class="nav__mega-link" [routerLink]="['/ypiresies', service.slug]" role="menuitem">
+            <span>{{ service.name }}</span>
+            <small>{{ service.description }}</small>
+          </a>
+        }
+      </div>
+    </div>
+    <a routerLink="/work">Έργα</a>
+    <a routerLink="/" fragment="pricing">Πακέτα</a>
+    <a routerLink="/contact">Επικοινωνία</a>
+  </div>
+
+  <button
+    class="nav__menu-toggle"
+    type="button"
+    [attr.aria-expanded]="mobileMenuOpen"
+    aria-controls="mobile-menu"
+    (click)="toggleMobileMenu()"
+  >
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <b>Μενού</b>
+  </button>
+
+  <a class="button button--outline nav__cta" routerLink="/contact">Ξεκίνα Project</a>
+</nav>
+
+@if (mobileMenuOpen) {
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Μενού πλοήγησης">
+    <button class="mobile-menu__backdrop" type="button" aria-label="Κλείσιμο μενού" (click)="closeMobileMenu()"></button>
+
+    <div class="mobile-menu__panel">
+      <div class="mobile-menu__top">
+        <a class="brand" routerLink="/" aria-label="EON Group αρχική" (click)="closeMobileMenu()">
+          <span class="brand__name">EON</span>
+          <span class="brand__accent">Group</span>
+        </a>
+
+        <button class="mobile-menu__close" type="button" aria-label="Κλείσιμο μενού" (click)="closeMobileMenu()">Κλείσιμο</button>
+      </div>
+
+      <div class="mobile-menu__group">
+        <p>Πλοήγηση</p>
+        <a routerLink="/about" (click)="closeMobileMenu()">Σχετικά</a>
+        <a routerLink="/" fragment="services" (click)="closeMobileMenu()">Υπηρεσίες</a>
+        <a routerLink="/work" (click)="closeMobileMenu()">Έργα</a>
+        <a routerLink="/" fragment="pricing" (click)="closeMobileMenu()">Πακέτα</a>
+        <a routerLink="/contact" (click)="closeMobileMenu()">Επικοινωνία</a>
+      </div>
+
+      <div class="mobile-menu__group mobile-menu__group--services">
+        <p>Υπηρεσίες</p>
+        @for (service of services; track service.slug) {
+          <a [routerLink]="['/ypiresies', service.slug]" (click)="closeMobileMenu()">
+            <span>{{ service.name }}</span>
+            <small>{{ service.description }}</small>
+          </a>
+        }
+      </div>
+
+      <a class="button button--accent mobile-menu__cta" routerLink="/contact" (click)="closeMobileMenu()">Ζήτησε πρόταση <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+}

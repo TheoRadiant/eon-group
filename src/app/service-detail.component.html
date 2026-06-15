@@ -1,0 +1,77 @@
+<main class="site-shell service-page">
+  <header class="service-page__hero">
+    <app-site-nav></app-site-nav>
+
+    <div class="service-page__hero-grid">
+      <div class="service-page__copy" data-reveal style="--reveal-delay: 80ms">
+        <p class="eyebrow">{{ service.eyebrow }}</p>
+        <h1>{{ service.title }}</h1>
+      </div>
+
+      <aside class="service-page__summary" aria-label="Σύνοψη υπηρεσίας" data-reveal style="--reveal-delay: 170ms">
+        <p>{{ service.lead }}</p>
+        <a class="button button--accent" routerLink="/" fragment="contact">Ζήτησε πρόταση <span aria-hidden="true">↗</span></a>
+      </aside>
+    </div>
+  </header>
+
+  <section class="service-page__band" aria-label="Βασική υπόσχεση">
+    <p data-reveal>{{ service.promise }}</p>
+  </section>
+
+  <section class="service-page__content" aria-labelledby="service-highlights-title">
+    <div class="service-page__section-heading" data-reveal>
+      <p class="section-label">Τι καλύπτουμε</p>
+      <h2 id="service-highlights-title">Καθαρή υπηρεσία, πρακτική δομή και αποτέλεσμα που μπορεί να εξελιχθεί.</h2>
+    </div>
+
+    <div class="service-feature-grid">
+      @for (highlight of service.highlights; track highlight; let index = $index) {
+        <article class="service-feature-card" data-reveal [style.--reveal-delay]="(index * 80) + 'ms'">
+          <span>0{{ index + 1 }}</span>
+          <p>{{ highlight }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="service-page__split" aria-labelledby="service-process-title">
+    <div data-reveal>
+      <p class="section-label">Διαδικασία</p>
+      <h2 id="service-process-title">Προχωράμε με σειρά, όχι με χάος.</h2>
+    </div>
+
+    <div class="service-page__steps">
+      @for (step of service.process; track step; let index = $index) {
+        <article data-reveal [style.--reveal-delay]="(index * 85) + 'ms'">
+          <span>0{{ index + 1 }}</span>
+          <p>{{ step }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="service-page__deliverables" aria-labelledby="service-deliverables-title">
+    <div class="service-page__section-heading" data-reveal>
+      <p class="section-label section-label--dark">Παραδοτέα</p>
+      <h2 id="service-deliverables-title">Τι παίρνεις στο τέλος.</h2>
+    </div>
+
+    <div class="service-page__pills">
+      @for (deliverable of service.deliverables; track deliverable; let index = $index) {
+        <span data-reveal [style.--reveal-delay]="(index * 55) + 'ms'">{{ deliverable }}</span>
+      }
+    </div>
+  </section>
+
+  <section class="service-page__cta" aria-labelledby="service-cta-title">
+    <h2 id="service-cta-title" data-reveal>Θέλεις να δούμε πώς εφαρμόζεται αυτό στη δική σου επιχείρηση;</h2>
+    <div data-reveal style="--reveal-delay: 100ms">
+      <a class="button button--dark" routerLink="/contact">Μίλησέ μας <span aria-hidden="true">↗</span></a>
+      <a class="button button--outline" routerLink="/" fragment="services">Πίσω στις υπηρεσίες</a>
+    </div>
+  </section>
+
+  <app-contact-section></app-contact-section>
+  <app-site-footer></app-site-footer>
+</main>

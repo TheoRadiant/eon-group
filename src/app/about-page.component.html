@@ -1,0 +1,48 @@
+<main class="site-shell interior-page about-page">
+  <header class="interior-hero">
+    <app-site-nav></app-site-nav>
+    <div class="interior-hero__copy">
+      <p class="eyebrow">EON Group</p>
+      <h1>Κάνουμε αυτό που λέμε ότι θα κάνουμε.</h1>
+      <p>
+        Είμαστε μια ομάδα που σχεδιάζει και υλοποιεί ιστοσελίδες με καθαρή σκέψη, γρήγορη εκτέλεση και προσοχή στη λεπτομέρεια. Μας νοιάζει η εικόνα, αλλά μας νοιάζει ακόμα περισσότερο να δουλεύει σωστά.
+      </p>
+      <a class="button button--accent" routerLink="/contact">Μίλησέ μας <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <section class="about-story-section" aria-labelledby="about-story-title">
+    <div>
+      <p class="section-label">Ποιοι είμαστε</p>
+      <h2 id="about-story-title">Ταλέντο, δομή και ευθύνη απέναντι στο αποτέλεσμα.</h2>
+    </div>
+    <p>
+      Η EON Group υπάρχει για επιχειρήσεις που θέλουν να δείχνουν σοβαρές στο διαδίκτυο χωρίς να χαθούν σε ατελείωτες διαδικασίες. Παίρνουμε την ιδέα, τη βάζουμε σε τάξη και τη μετατρέπουμε σε ιστοσελίδα, eshop ή custom λύση που μπορεί να υποστηρίξει πραγματική ανάπτυξη.
+    </p>
+  </section>
+
+  <section class="about-values-section" aria-labelledby="about-values-title">
+    <div class="section-intro why-section__intro">
+      <p class="section-label" id="about-values-title">Πώς δουλεύουμε</p>
+      <h2>Καθαρά λόγια, καθαρή δουλειά, καθαρό αποτέλεσμα.</h2>
+      <p class="why-section__text">
+        Δεν πουλάμε μαγεία. Σχεδιάζουμε, υλοποιούμε, ελέγχουμε και βελτιώνουμε με τρόπο που κρατάει την επιχείρηση στο κέντρο.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      @for (item of values; track item.title; let index = $index) {
+        <article class="why-card">
+          <span class="why-card__number">0{{ index + 1 }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <app-contact-section></app-contact-section>
+  <app-site-footer></app-site-footer>
+</main>
