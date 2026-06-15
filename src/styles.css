@@ -77,7 +77,6 @@ button {
   gap: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
-  background: rgba(18, 18, 18, 0.72);
   padding: 0.5rem;
   box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.24);
   backdrop-filter: blur(18px);
