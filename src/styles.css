@@ -72,7 +72,6 @@ button {
   grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
   padding: 0.5rem;
   box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.24);
