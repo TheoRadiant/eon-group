@@ -12,8 +12,8 @@
       </div>
 
       <div class="hero__actions" aria-label="Βασικές ενέργειες" data-reveal style="--reveal-delay: 360ms">
-        <a class="button button--accent" href="#work">Δες δουλειές <span aria-hidden="true">↗</span></a>
-        <a class="button button--ghost" href="#pricing">Πακέτα από 300€ <span aria-hidden="true">↗</span></a>
+        <a class="button button--accent" href="#work">Δες δουλειές <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        <a class="button button--ghost" href="#pricing">Πακέτα από 300€ <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
       </div>
     </div>
   </header>
@@ -62,9 +62,12 @@
     <div class="section-intro why-section__intro">
       <p class="section-label" data-reveal>Γιατί εμάς</p>
       <h2 id="why-title" data-reveal style="--reveal-delay: 110ms">Καθαρή διαδικασία, δυνατή εικόνα και κόστος που βγάζει νόημα.</h2>
-      <p class="why-section__text" data-reveal style="--reveal-delay: 190ms">
-        Στήνουμε κάθε ιστοσελίδα σαν εργαλείο πωλήσεων: καθαρή πρώτη εντύπωση, σωστή ροή και βάση που μπορεί να εξελιχθεί μετά το λανσάρισμα.
-      </p>
+      <div class="why-section__side" data-reveal style="--reveal-delay: 190ms">
+        <p class="why-section__text">
+          Στήνουμε κάθε ιστοσελίδα σαν εργαλείο πωλήσεων: καθαρή πρώτη εντύπωση, σωστή ροή και βάση που μπορεί να εξελιχθεί μετά το λανσάρισμα.
+        </p>
+        <a class="button button--white" href="#contact">Ξεκίνα σήμερα <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
     </div>
 
     <div class="why-grid">
@@ -83,7 +86,7 @@
   <section class="work-section" id="work" aria-labelledby="work-title">
     <div class="work-header">
       <p class="section-label" data-reveal>Έργα</p>
-      <h2 id="work-title" data-reveal style="--reveal-delay: 110ms">Έργα με <span>δομή</span>, <span>ταχύτητα</span><br>και <span>ξεκάθαρο σκοπό</span>.</h2>
+      <h2 id="work-title" data-reveal style="--reveal-delay: 110ms"><span class="work-title__line">Έργα με δομή, ταχύτητα</span><span class="work-title__line">και ξεκάθαρο σκοπό.</span></h2>
     </div>
 
     <div class="work-list">
@@ -122,7 +125,7 @@
                 rel="noopener noreferrer"
                 [attr.aria-label]="'Δείτε το project ' + project.name"
               >
-                <span class="project-visual__button">Δείτε το Project <span aria-hidden="true">↗</span></span>
+                <span class="project-visual__button">Δείτε το Project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
               </a>
             }
           </div>
@@ -140,7 +143,7 @@
               [attr.target]="project.link ? '_blank' : null"
               [attr.rel]="project.link ? 'noopener noreferrer' : null"
             >
-              {{ project.linkLabel ?? 'Συζήτησε παρόμοιο project' }} <span aria-hidden="true">↗</span>
+              {{ project.linkLabel ?? 'Συζήτησε παρόμοιο project' }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
             </a>
           </div>
         </article>
@@ -154,7 +157,7 @@
         <p class="section-label section-label--dark" data-reveal>Υπηρεσίες</p>
         <h2 id="services-title" data-reveal style="--reveal-delay: 110ms">Υπηρεσίες</h2>
       </div>
-      <a class="button button--accent services-heading__cta" href="#contact" data-reveal style="--reveal-delay: 190ms">Ζήτησε πρόταση <span aria-hidden="true">↗</span></a>
+      <a class="button button--accent services-heading__cta" href="#contact" data-reveal style="--reveal-delay: 190ms">Ζήτησε πρόταση <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
 
     <div class="services-list">
@@ -275,7 +278,7 @@
         }
       </div>
 
-      <a class="button button--dark" href="#contact">Ζήτησε προσφορά <span aria-hidden="true">↗</span></a>
+      <a class="button button--dark" href="#contact">Ζήτησε προσφορά <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
   </section>
 
@@ -295,52 +298,9 @@
 
   <section class="cta-section" aria-labelledby="cta-title">
     <h2 id="cta-title" data-reveal>Έχεις ιδέα για νέα ιστοσελίδα;</h2>
-    <a class="button button--dark" href="#contact" data-reveal style="--reveal-delay: 120ms">Μίλησέ μας <span aria-hidden="true">↗</span></a>
+    <a class="button button--dark" href="#contact" data-reveal style="--reveal-delay: 120ms">Μίλησέ μας <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
   </section>
 
-  <section class="contact-section" id="contact" aria-labelledby="contact-title">
-    <div class="contact-copy">
-      <p class="section-label section-label--dark" data-reveal>Επικοινωνία</p>
-      <h2 id="contact-title" data-reveal style="--reveal-delay: 110ms">Ας ξεκινήσουμε το επόμενο project.</h2>
-      <p data-reveal style="--reveal-delay: 190ms">
-        Στείλε μας λίγες πληροφορίες για την επιχείρηση, τις υπηρεσίες και τον στόχο σου. Θα επιστρέψουμε με καθαρή πρόταση και επόμενα βήματα.
-      </p>
-      <div class="contact-details" data-reveal style="--reveal-delay: 260ms">
-        <a href="mailto:hello@eongroup.gr">hello@eongroup.gr</a>
-        <span>Greece · Remote συνεργασίες σε όλη την Ελλάδα</span>
-      </div>
-    </div>
-
-    <form class="contact-form" aria-label="Φόρμα επικοινωνίας" data-reveal="visual" style="--reveal-delay: 160ms">
-      <label>
-        Όνομα
-        <input type="text" name="name" autocomplete="name" placeholder="Το όνομά σου">
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
-      </label>
-      <label>
-        Τι χρειάζεσαι;
-        <textarea name="message" rows="5" placeholder="Νέα ιστοσελίδα, ανασχεδιασμός, SEO, καμπάνιες..."></textarea>
-      </label>
-      <button class="button button--accent" type="button">Αποστολή ενδιαφέροντος <span aria-hidden="true">↗</span></button>
-    </form>
-  </section>
-
-  <footer class="footer" data-reveal>
-    <a class="brand" href="#top" aria-label="EON Group αρχική">
-      <span class="brand__name">EON</span>
-      <span class="brand__accent">Group</span>
-    </a>
-    <p>Σχεδιασμός ιστοσελίδων, προσαρμοστική υλοποίηση, δομή SEO και υποστήριξη ψηφιακής προώθησης για επιχειρήσεις στην Ελλάδα.</p>
-    <div class="footer__bottom">
-      <span>© 2026 EON Group. All rights reserved.</span>
-      <div>
-        <a href="#services">Υπηρεσίες</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Επικοινωνία</a>
-      </div>
-    </div>
-  </footer>
+  <app-contact-section></app-contact-section>
+  <app-site-footer></app-site-footer>
 </main>

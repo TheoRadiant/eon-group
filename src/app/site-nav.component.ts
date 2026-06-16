@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { serviceSummaries } from './service-content';
@@ -9,19 +9,23 @@ import { serviceSummaries } from './service-content';
   imports: [RouterLink],
   templateUrl: './site-nav.component.html'
 })
-export class SiteNavComponent implements OnInit, OnDestroy {
+export class SiteNavComponent implements OnInit {
   readonly services = serviceSummaries;
   mobileMenuOpen = false;
   navHidden = false;
+  navScrolled = false;
   private lastScrollY = 0;
 
-  private readonly handleScroll = (): void => {
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
     if (typeof window === 'undefined' || this.mobileMenuOpen) {
       return;
     }
 
     const nextScrollY = Math.max(window.scrollY, 0);
     const isScrollingDown = nextScrollY > this.lastScrollY;
+
+    this.navScrolled = nextScrollY > 24;
 
     if (nextScrollY < 24 || !isScrollingDown) {
       this.navHidden = false;
@@ -30,7 +34,7 @@ export class SiteNavComponent implements OnInit, OnDestroy {
     }
 
     this.lastScrollY = nextScrollY;
-  };
+  }
 
   ngOnInit(): void {
     if (typeof window === 'undefined') {
@@ -38,15 +42,7 @@ export class SiteNavComponent implements OnInit, OnDestroy {
     }
 
     this.lastScrollY = Math.max(window.scrollY, 0);
-    window.addEventListener('scroll', this.handleScroll, { passive: true });
-  }
-
-  ngOnDestroy(): void {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    window.removeEventListener('scroll', this.handleScroll);
+    this.navScrolled = this.lastScrollY > 24;
   }
 
   toggleMobileMenu(): void {

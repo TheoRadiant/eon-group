@@ -45,17 +45,6 @@ export class WorkPageComponent {
       imageAlt: 'Αρχική σελίδα Entomecta για απεντομώσεις και απολυμάνσεις',
       link: 'https://entomecta.pcnetweb.eu/',
       linkLabel: 'Δες το project'
-    },
-    {
-      number: '03',
-      name: 'Kamarrr Group',
-      tags: 'ELEMENTOR ΙΣΤΟΣΕΛΙΔΑ, ANGULAR ΠΛΑΤΦΟΡΜΕΣ, ΠΡΟΣΑΡΜΟΣΜΕΝΑ ΣΥΣΤΗΜΑΤΑ',
-      description: 'Υλοποιήσαμε πλήρη ιστοσελίδα σε Elementor και σχεδιάσαμε τέσσερις custom πλατφόρμες σε Angular, χτισμένες για τις εσωτερικές λειτουργίες και την ψηφιακή ανάπτυξη του ομίλου.',
-      visual: 'kamarrr',
-      image: '/assets/kamarrr.png',
-      imageAlt: 'Οθόνη παρουσίασης Kamarrr Group με portfolio εφαρμογών',
-      link: 'https://kamarrr-group.com/',
-      linkLabel: 'Δες το project'
     }
   ];
 }

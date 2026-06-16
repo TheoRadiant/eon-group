@@ -1,4 +1,4 @@
-<nav class="nav" [class.nav--hidden]="navHidden" aria-label="Κύρια πλοήγηση">
+<nav class="nav" [class.nav--hidden]="navHidden" [class.nav--scrolled]="navScrolled" aria-label="Κύρια πλοήγηση">
   <a class="brand" routerLink="/" aria-label="EON Group αρχική" (click)="closeMobileMenu()">
     <span class="brand__name">EON</span>
     <span class="brand__accent">Group</span>
@@ -30,9 +30,7 @@
     aria-controls="mobile-menu"
     (click)="toggleMobileMenu()"
   >
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
     <b>Μενού</b>
   </button>
 
@@ -72,7 +70,7 @@
         }
       </div>
 
-      <a class="button button--accent mobile-menu__cta" routerLink="/contact" (click)="closeMobileMenu()">Ζήτησε πρόταση <span aria-hidden="true">↗</span></a>
+      <a class="button button--accent mobile-menu__cta" routerLink="/contact" (click)="closeMobileMenu()">Ζήτησε πρόταση <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
   </div>
 }

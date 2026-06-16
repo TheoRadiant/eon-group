@@ -12,7 +12,7 @@
 
   <section class="work-section work-page__list" aria-labelledby="work-page-title">
     <div class="work-header">
-      <p class="section-label">Selected work</p>
+      <p class="section-label">Επιλεγμένα έργα</p>
       <h2 id="work-page-title">Έργα με <span>δομή</span>, <span>ταχύτητα</span><br>και <span>ξεκάθαρο σκοπό</span>.</h2>
     </div>
 
@@ -37,7 +37,7 @@
               rel="noopener noreferrer"
               [attr.aria-label]="'Δείτε το project ' + project.name"
             >
-              <span class="project-visual__button">Δείτε το Project <span aria-hidden="true">↗</span></span>
+              <span class="project-visual__button">Δείτε το Project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </a>
           </div>
 
@@ -49,7 +49,7 @@
             </div>
             <p class="work-description">{{ project.description }}</p>
             <a class="text-link" [href]="project.link" target="_blank" rel="noopener noreferrer">
-              {{ project.linkLabel }} <span aria-hidden="true">↗</span>
+              {{ project.linkLabel }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
             </a>
           </div>
         </article>

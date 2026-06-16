@@ -1,15 +1,69 @@
-<main class="site-shell interior-page contact-page">
-  <header class="interior-hero">
+<main class="site-shell contact-page">
+  <header class="contact-page__hero">
     <app-site-nav></app-site-nav>
-    <div class="interior-hero__copy">
-      <p class="eyebrow">Επικοινωνία</p>
-      <h1>Πες μας τι θέλεις να φτιάξουμε.</h1>
-      <p>
-        Νέα ιστοσελίδα, eshop, redesign, custom πλατφόρμα ή υποστήριξη. Στείλε μας τις βασικές πληροφορίες και θα επιστρέψουμε με καθαρό πλάνο.
-      </p>
+
+    <div class="contact-page__hero-grid">
+      <div class="contact-page__copy">
+        <p class="section-label section-label--dark">Επικοινωνία</p>
+        <h1>Πες μας τι θέλεις να φτιάξουμε.</h1>
+        <p>
+          Νέα ιστοσελίδα, eshop, redesign, custom πλατφόρμα ή υποστήριξη. Στείλε μας τις βασικές πληροφορίες και θα επιστρέψουμε με καθαρό πλάνο, κόστος και επόμενα βήματα.
+        </p>
+
+        <div class="contact-page__quick" aria-label="Στοιχεία επικοινωνίας">
+          <a href="mailto:hello@eongroup.gr">hello@eongroup.gr</a>
+          <span>Απομακρυσμένες συνεργασίες σε όλη την Ελλάδα</span>
+          <span>Απάντηση συνήθως μέσα σε 1 εργάσιμη ημέρα</span>
+        </div>
+      </div>
+
+      <form class="contact-page__form" aria-label="Φόρμα επικοινωνίας">
+        <div>
+          <p class="section-label">Σύντομο brief</p>
+          <h2>Ξεκινάμε από τα βασικά.</h2>
+        </div>
+
+        <label>
+          Όνομα
+          <input type="text" name="name" autocomplete="name" placeholder="Το όνομά σου">
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+        </label>
+        <label>
+          Τι χρειάζεσαι;
+          <textarea name="message" rows="5" placeholder="Νέα ιστοσελίδα, eshop, SEO, redesign, custom λύση..."></textarea>
+        </label>
+        <button class="button button--accent" type="button">Αποστολή ενδιαφέροντος <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></button>
+      </form>
     </div>
   </header>
 
-  <app-contact-section></app-contact-section>
+  <section class="contact-page__steps" aria-labelledby="contact-steps-title">
+    <div>
+      <p class="section-label">Μετά την αποστολή</p>
+      <h2 id="contact-steps-title">Καθαρή συνέχεια χωρίς μπερδέματα.</h2>
+    </div>
+
+    <div class="contact-page__step-grid">
+      <article>
+        <span>01</span>
+        <h3>Διαβάζουμε το brief</h3>
+        <p>Βλέπουμε στόχο, ανάγκες, τύπο έργου και τι πρέπει να λυθεί πρώτο.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Στέλνουμε κατεύθυνση</h3>
+        <p>Προτείνουμε λύση, ενδεικτικό scope, χρόνο και κόστος με απλό τρόπο.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Κλείνουμε επόμενα βήματα</h3>
+        <p>Αν ταιριάζει, οργανώνουμε υλικό, προτεραιότητες και πρόγραμμα υλοποίησης.</p>
+      </article>
+    </div>
+  </section>
+
   <app-site-footer></app-site-footer>
 </main>

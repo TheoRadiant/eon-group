@@ -59,7 +59,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private revealObserver?: IntersectionObserver;
   selectedPricingCategoryIndex = 0;
   selectedPricingIndex = 0;
-  mobileMenuOpen = false;
   serviceCursor = {
     visible: false,
     x: 0,
@@ -149,14 +148,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.serviceCursor.visible = false;
   }
 
-  toggleMobileMenu(): void {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
-  }
-
-  closeMobileMenu(): void {
-    this.mobileMenuOpen = false;
-  }
-
   readonly services: ServiceSummary[] = serviceSummaries;
 
   readonly projects: ProjectItem[] = [
@@ -180,17 +171,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       image: '/assets/entomecta.png',
       imageAlt: 'Αρχική σελίδα Entomecta για απεντομώσεις και απολυμάνσεις',
       link: 'https://entomecta.pcnetweb.eu/',
-      linkLabel: 'Δες το project'
-    },
-    {
-      number: '03',
-      name: 'Kamarrr Group',
-      tags: 'ELEMENTOR ΙΣΤΟΣΕΛΙΔΑ, ANGULAR ΠΛΑΤΦΟΡΜΕΣ, ΠΡΟΣΑΡΜΟΣΜΕΝΑ ΣΥΣΤΗΜΑΤΑ',
-      description: 'Υλοποιήσαμε πλήρη ιστοσελίδα σε Elementor και σχεδιάσαμε τέσσερις custom πλατφόρμες σε Angular, χτισμένες για τις εσωτερικές λειτουργίες και την ψηφιακή ανάπτυξη του ομίλου.',
-      visual: 'kamarrr',
-      image: '/assets/kamarrr.png',
-      imageAlt: 'Οθόνη παρουσίασης Kamarrr Group με portfolio εφαρμογών',
-      link: 'https://kamarrr-group.com/',
       linkLabel: 'Δες το project'
     }
   ];
@@ -342,45 +322,47 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       theme: 'support',
       packages: [
         {
-          name: 'Φροντίδα Ιστοσελίδας',
-          label: 'Πακέτα υποστήριξης',
-          title: 'Φροντίδα ιστοσελίδας',
+          name: 'Basic Support',
+          label: 'Υποστήριξη ιστοσελίδας',
+          title: 'Basic Support για απλές ιστοσελίδες',
           price: 'Προσφορά',
-          description: 'Σταθερή τεχνική φροντίδα με τιμή κατόπιν προσφοράς για ιστοσελίδες που χρειάζονται ενημερώσεις, μικρές αλλαγές, ελέγχους αντιγράφων ασφαλείας και ήρεμη συνέχεια.',
+          description: 'Ιδανικό για μικρές επιχειρηματικές ιστοσελίδες, portfolio και εταιρικές παρουσιάσεις που χρειάζονται απλή, σταθερή υποστήριξη χωρίς πολλές μηνιαίες αλλαγές.',
           includes: [
-            'Ενημερώσεις ιστοσελίδας',
-            'Έλεγχοι αντιγράφων ασφαλείας',
-            'Μικρές αλλαγές περιεχομένου',
-            'Έλεγχος ασφάλειας',
-            'Μηνιαίο πλαίσιο υποστήριξης'
+            'Βασικές ενημερώσεις και συντήρηση',
+            '1 backup ιστοσελίδας τον μήνα',
+            '1 αλλαγή περιεχομένου τον μήνα',
+            'Μηνιαία υποστήριξη μέσω ticket',
+            'Απάντηση ticket έως 24 ώρες'
           ]
         },
         {
-          name: 'SEO Υποστήριξη',
-          label: 'Ανάπτυξη περιεχομένου',
-          title: 'SEO και υποστήριξη περιεχομένου',
-          price: 'Προσφορά',
-          description: 'Υποστήριξη για οργανική ανάπτυξη με περιεχόμενο, SEO βελτιώσεις, στατιστικά και καθαρή κατεύθυνση για επόμενα βήματα.',
+          name: 'E-shop Support',
+          label: 'Υποστήριξη e-shop',
+          title: 'E-shop Support από 100€/μήνα',
+          price: '100€/μήνα',
+          description: 'Ιδανικό για WooCommerce ιστοσελίδες, e-shops, booking platforms και websites που έχουν ενεργούς πελάτες και χρειάζονται πιο άμεση τεχνική υποστήριξη.',
           includes: [
-            'SEO βελτιώσεις',
-            'Πλάνο περιεχομένου',
-            'Υποστήριξη άρθρων/ιστολογίου',
-            'Έλεγχος στατιστικών',
-            'Δομή έτοιμη για αναζήτηση'
+            'Ενημερώσεις και συντήρηση ιστοσελίδας',
+            'Τακτικά backups',
+            'Αλλαγές προϊόντων ή περιεχομένου',
+            'Priority support',
+            'Απάντηση ticket έως 4 ώρες',
+            'Κατάλληλο για ενεργά online stores'
           ]
         },
         {
-          name: 'Ειδική Υποστήριξη',
-          label: 'Ευέλικτη υποστήριξη',
-          title: 'Προσαρμοσμένο πλάνο υποστήριξης',
+          name: 'Custom Support',
+          label: 'Custom υποστήριξη',
+          title: 'Custom Website Support',
           price: 'Προσφορά',
-          description: 'Για επιχειρήσεις που χρειάζονται πιο ευέλικτη τεχνική υποστήριξη ή υποστήριξη προώθησης, σελίδες προορισμού, προσαρμοσμένες αλλαγές και συνεχείς βελτιώσεις.',
+          description: 'Ιδανικό για custom-coded websites, προηγμένες πλατφόρμες, web applications και επιχειρήσεις με πιο σύνθετες τεχνικές ανάγκες. Η τιμή δίνεται κατόπιν ελέγχου του website και του επιπέδου υποστήριξης.',
           includes: [
-            'Προσαρμοσμένο μηνιαίο πλαίσιο',
-            'Υποστήριξη σελίδων προορισμού',
-            'Τεχνικές διορθώσεις',
-            'Βελτιώσεις μετατροπών',
-            'Προτεραιότητα συνεργασίας'
+            'Υποστήριξη βάσει συγκεκριμένων αναγκών',
+            'Συντήρηση custom κώδικα',
+            'Bug fixing και τεχνικές βελτιώσεις',
+            'Priority support',
+            'Απάντηση ticket έως 2 ώρες',
+            'Ευέλικτο μηνιαίο πλάνο'
           ]
         }
       ]

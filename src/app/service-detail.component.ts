@@ -20,13 +20,11 @@ export class ServiceDetailComponent implements AfterViewInit, OnDestroy, OnInit 
   private revealObserver?: IntersectionObserver;
   private routeSubscription?: Subscription;
   currentSlug = this.route.snapshot.paramMap.get('slug') ?? '';
-  mobileMenuOpen = false;
   readonly services = serviceDetails;
 
   ngOnInit(): void {
     this.routeSubscription = this.route.paramMap.subscribe((params) => {
       this.currentSlug = params.get('slug') ?? '';
-      this.closeMobileMenu();
     });
   }
 
@@ -76,14 +74,6 @@ export class ServiceDetailComponent implements AfterViewInit, OnDestroy, OnInit 
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
     this.routeSubscription?.unsubscribe();
-  }
-
-  toggleMobileMenu(): void {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
-  }
-
-  closeMobileMenu(): void {
-    this.mobileMenuOpen = false;
   }
 
   get service(): ServiceDetail {
