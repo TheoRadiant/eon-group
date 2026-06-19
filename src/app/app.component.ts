@@ -324,8 +324,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         {
           name: 'Basic Support',
           label: 'Υποστήριξη ιστοσελίδας',
-          title: 'Basic Support για απλές ιστοσελίδες',
-          price: 'Προσφορά',
+          title: 'Basic Support από 50€/μήνα',
+          price: '50€/μήνα',
           description: 'Ιδανικό για μικρές επιχειρηματικές ιστοσελίδες, portfolio και εταιρικές παρουσιάσεις που χρειάζονται απλή, σταθερή υποστήριξη χωρίς πολλές μηνιαίες αλλαγές.',
           includes: [
             'Βασικές ενημερώσεις και συντήρηση',

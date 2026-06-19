@@ -1,14 +1,46 @@
 <footer class="footer" data-reveal>
-  <a class="brand" routerLink="/" aria-label="EON Group αρχική">
-    <span class="brand__name">EON</span>
-    <span class="brand__accent">Group</span>
-  </a>
-  <p>Σχεδιασμός ιστοσελίδων, προσαρμοστική υλοποίηση, δομή SEO και υποστήριξη ψηφιακής προώθησης για επιχειρήσεις στην Ελλάδα.</p>
+  <div class="footer__info">
+    <a class="brand" routerLink="/" aria-label="EON Group αρχική">
+      <span class="brand__name">EON</span>
+      <span class="brand__accent">Group</span>
+    </a>
+    <p>Σχεδιασμός ιστοσελίδων, προσαρμοστική υλοποίηση, δομή SEO και υποστήριξη ψηφιακής προώθησης για επιχειρήσεις στην Ελλάδα.</p>
+    <div class="footer__contact" aria-label="Στοιχεία επικοινωνίας">
+      <a href="mailto:eongroupgr@gmail.com">eongroupgr@gmail.com</a>
+      <a href="tel:+306946934533">+30 6946934533</a>
+    </div>
+    <div class="footer__social" aria-label="Social media">
+      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+      <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <nav class="footer__nav" aria-label="Πλοήγηση footer">
+    <div>
+      <h2>Πλοήγηση</h2>
+      <a routerLink="/about">Σχετικά</a>
+      <a routerLink="/" fragment="services">Υπηρεσίες</a>
+      <a routerLink="/work">Έργα</a>
+      <a routerLink="/" fragment="pricing">Πακέτα</a>
+      <a routerLink="/contact">Επικοινωνία</a>
+    </div>
+
+    <div>
+      <h2>Υπηρεσίες</h2>
+      @for (service of services; track service.slug) {
+        <a [routerLink]="['/ypiresies', service.slug]">{{ service.name }}</a>
+      }
+    </div>
+  </nav>
   <div class="footer__bottom">
     <span>© 2026 EON Group. Με επιφύλαξη παντός δικαιώματος.</span>
     <div>
+      <a routerLink="/about">Σχετικά</a>
       <a routerLink="/" fragment="services">Υπηρεσίες</a>
       <a routerLink="/work">Έργα</a>
+      <a routerLink="/" fragment="pricing">Πακέτα</a>
       <a routerLink="/contact">Επικοινωνία</a>
     </div>
   </div>

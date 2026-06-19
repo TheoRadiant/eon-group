@@ -155,7 +155,7 @@
     <div class="services-heading">
       <div class="services-heading__copy">
         <p class="section-label section-label--dark" data-reveal>Υπηρεσίες</p>
-        <h2 id="services-title" data-reveal style="--reveal-delay: 110ms">Υπηρεσίες</h2>
+        <h2 id="services-title" data-reveal style="--reveal-delay: 110ms">Τι Προσφέρουμε</h2>
       </div>
       <a class="button button--accent services-heading__cta" href="#contact" data-reveal style="--reveal-delay: 190ms">Ζήτησε πρόταση <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
@@ -189,16 +189,21 @@
   </section>
 
   <section class="process-section" aria-labelledby="process-title">
-    <div class="section-intro section-intro--wide">
-      <p class="section-label" data-reveal>Διαδικασία</p>
-      <h2 id="process-title" data-reveal style="--reveal-delay: 110ms">Από την πρώτη ιδέα μέχρι το λανσάρισμα, χωρίς χάος.</h2>
+    <div class="process-heading">
+      <div class="section-intro section-intro--wide process-heading__copy">
+        <p class="section-label" data-reveal>Διαδικασία</p>
+        <h2 id="process-title" data-reveal style="--reveal-delay: 110ms">Από την πρώτη ιδέα μέχρι το λανσάρισμα, χωρίς χάος.</h2>
+      </div>
+      <a class="button button--dark process-heading__cta" href="#contact" data-reveal style="--reveal-delay: 190ms">Ξεκίνα project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
 
     <div class="process-list">
       @for (step of process; track step.step) {
         <article class="process-row" data-reveal>
-          <span>{{ step.step }}</span>
-          <h3>{{ step.title }}</h3>
+          <div class="process-row__heading">
+            <span>{{ step.step }}</span>
+            <h3>{{ step.title }}</h3>
+          </div>
           <p>{{ step.description }}</p>
         </article>
       }
