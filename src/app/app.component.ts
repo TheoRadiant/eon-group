@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { ContactSectionComponent } from './contact-section.component';
 import { ServiceSummary, serviceSummaries } from './service-content';
 import { SiteFooterComponent } from './site-footer.component';
 import { SiteNavComponent } from './site-nav.component';
@@ -49,7 +48,7 @@ type PricingCategory = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, SiteNavComponent, ContactSectionComponent, SiteFooterComponent],
+  imports: [RouterLink, SiteNavComponent, SiteFooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -57,6 +56,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly ngZone = inject(NgZone);
   private revealObserver?: IntersectionObserver;
+  private heroScrollCleanup?: () => void;
+  private heroScrollFrame = 0;
   selectedPricingCategoryIndex = 0;
   selectedPricingIndex = 0;
   serviceCursor = {
@@ -76,7 +77,13 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.elementRef.nativeElement.querySelectorAll<HTMLElement>('[data-reveal]')
       );
 
-      if (!shell || revealItems.length === 0) {
+      if (!shell) {
+        return;
+      }
+
+      this.setupHeroScrollEffect(shell);
+
+      if (revealItems.length === 0) {
         return;
       }
 
@@ -110,6 +117,63 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
+    this.heroScrollCleanup?.();
+  }
+
+  private setupHeroScrollEffect(shell: HTMLElement): void {
+    const hero = shell.querySelector<HTMLElement>('.hero');
+
+    if (!hero) {
+      return;
+    }
+
+    const getOpenFrame = () => {
+      if (window.innerWidth <= 700) {
+        return { frame: 1.1, radius: 12 };
+      }
+
+      if (window.innerWidth <= 960) {
+        return { frame: 1.35, radius: 14 };
+      }
+
+      return { frame: 1.75, radius: 16 };
+    };
+
+    const updateHeroFrame = () => {
+      const progress = Math.min(Math.max(window.scrollY / 260, 0), 1);
+      const open = getOpenFrame();
+      const remaining = 1 - progress;
+
+      shell.style.setProperty('--hero-scroll-progress', progress.toFixed(3));
+      shell.style.setProperty('--hero-bg-fade', progress.toFixed(3));
+      shell.style.setProperty('--hero-frame-size', `${(open.frame * remaining).toFixed(3)}rem`);
+      shell.style.setProperty('--hero-radius', `${(open.radius * remaining).toFixed(2)}px`);
+    };
+
+    const scheduleHeroFrame = () => {
+      if (this.heroScrollFrame) {
+        return;
+      }
+
+      this.heroScrollFrame = window.requestAnimationFrame(() => {
+        this.heroScrollFrame = 0;
+        updateHeroFrame();
+      });
+    };
+
+    updateHeroFrame();
+    window.addEventListener('scroll', scheduleHeroFrame, { passive: true });
+    window.addEventListener('resize', scheduleHeroFrame);
+
+    this.heroScrollCleanup = () => {
+      window.removeEventListener('scroll', scheduleHeroFrame);
+      window.removeEventListener('resize', scheduleHeroFrame);
+
+      if (this.heroScrollFrame) {
+        window.cancelAnimationFrame(this.heroScrollFrame);
+        this.heroScrollFrame = 0;
+      }
+    };
   }
 
   get selectedPricingCategory(): PricingCategory {

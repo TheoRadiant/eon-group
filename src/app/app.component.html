@@ -6,14 +6,17 @@
       <div class="hero__copy">
         <p class="eyebrow" data-reveal style="--reveal-delay: 80ms">Σχεδιασμός ιστοσελίδων & ψηφιακή προώθηση στην Ελλάδα</p>
         <h1 data-reveal style="--reveal-delay: 160ms">Ιστοσελίδες που ξεχωρίζουν <span>από 300€</span></h1>
+      </div>
+
+      <div class="hero__bottom">
         <p class="hero__lead" data-reveal style="--reveal-delay: 260ms">
           Μοντέρνες, προσαρμοστικές και φιλικές προς SEO ιστοσελίδες για επιχειρήσεις που θέλουν να φαίνονται επαγγελματικές από την πρώτη επίσκεψη.
         </p>
-      </div>
 
-      <div class="hero__actions" aria-label="Βασικές ενέργειες" data-reveal style="--reveal-delay: 360ms">
-        <a class="button button--accent" href="#work">Δες δουλειές <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-        <a class="button button--ghost" href="#pricing">Πακέτα από 300€ <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        <div class="hero__actions" aria-label="Βασικές ενέργειες" data-reveal style="--reveal-delay: 360ms">
+          <a class="button button--accent" href="#work">Δες δουλειές <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          <a class="button button--ghost" href="#pricing">Πακέτα από 300€ <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
       </div>
     </div>
   </header>
@@ -66,7 +69,7 @@
         <p class="why-section__text">
           Στήνουμε κάθε ιστοσελίδα σαν εργαλείο πωλήσεων: καθαρή πρώτη εντύπωση, σωστή ροή και βάση που μπορεί να εξελιχθεί μετά το λανσάρισμα.
         </p>
-        <a class="button button--white" href="#contact">Ξεκίνα σήμερα <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        <a class="button button--white" routerLink="/contact">Ξεκίνα σήμερα <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
       </div>
     </div>
 
@@ -139,7 +142,7 @@
             <p class="work-description">{{ project.description }}</p>
             <a
               class="text-link"
-              [href]="project.link ?? '#contact'"
+              [href]="project.link ?? '/contact'"
               [attr.target]="project.link ? '_blank' : null"
               [attr.rel]="project.link ? 'noopener noreferrer' : null"
             >
@@ -157,7 +160,7 @@
         <p class="section-label section-label--dark" data-reveal>Υπηρεσίες</p>
         <h2 id="services-title" data-reveal style="--reveal-delay: 110ms">Τι Προσφέρουμε</h2>
       </div>
-      <a class="button button--accent services-heading__cta" href="#contact" data-reveal style="--reveal-delay: 190ms">Ζήτησε πρόταση <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      <a class="button button--accent services-heading__cta" routerLink="/contact" data-reveal style="--reveal-delay: 190ms">Ζήτησε πρόταση <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
 
     <div class="services-list">
@@ -194,7 +197,7 @@
         <p class="section-label" data-reveal>Διαδικασία</p>
         <h2 id="process-title" data-reveal style="--reveal-delay: 110ms">Από την πρώτη ιδέα μέχρι το λανσάρισμα, χωρίς χάος.</h2>
       </div>
-      <a class="button button--dark process-heading__cta" href="#contact" data-reveal style="--reveal-delay: 190ms">Ξεκίνα project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      <a class="button button--dark process-heading__cta" routerLink="/contact" data-reveal style="--reveal-delay: 190ms">Ξεκίνα project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
 
     <div class="process-list">
@@ -283,7 +286,7 @@
         }
       </div>
 
-      <a class="button button--dark" href="#contact">Ζήτησε προσφορά <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      <a class="button button--dark" routerLink="/contact">Ζήτησε προσφορά <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
   </section>
 
@@ -303,9 +306,8 @@
 
   <section class="cta-section" aria-labelledby="cta-title">
     <h2 id="cta-title" data-reveal>Έχεις ιδέα για νέα ιστοσελίδα;</h2>
-    <a class="button button--dark" href="#contact" data-reveal style="--reveal-delay: 120ms">Μίλησέ μας <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+    <a class="button button--dark" routerLink="/contact" data-reveal style="--reveal-delay: 120ms">Μίλησέ μας <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
   </section>
 
-  <app-contact-section></app-contact-section>
   <app-site-footer></app-site-footer>
 </main>

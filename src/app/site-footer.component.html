@@ -1,47 +1,103 @@
 <footer class="footer" data-reveal>
-  <div class="footer__info">
-    <a class="brand" routerLink="/" aria-label="EON Group αρχική">
-      <span class="brand__name">EON</span>
-      <span class="brand__accent">Group</span>
-    </a>
-    <p>Σχεδιασμός ιστοσελίδων, προσαρμοστική υλοποίηση, δομή SEO και υποστήριξη ψηφιακής προώθησης για επιχειρήσεις στην Ελλάδα.</p>
-    <div class="footer__contact" aria-label="Στοιχεία επικοινωνίας">
-      <a href="mailto:eongroupgr@gmail.com">eongroupgr@gmail.com</a>
-      <a href="tel:+306946934533">+30 6946934533</a>
-    </div>
-    <div class="footer__social" aria-label="Social media">
-      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-      <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
-      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
-    </div>
-  </div>
-  <nav class="footer__nav" aria-label="Πλοήγηση footer">
-    <div>
-      <h2>Πλοήγηση</h2>
-      <a routerLink="/about">Σχετικά</a>
-      <a routerLink="/" fragment="services">Υπηρεσίες</a>
-      <a routerLink="/work">Έργα</a>
-      <a routerLink="/" fragment="pricing">Πακέτα</a>
-      <a routerLink="/contact">Επικοινωνία</a>
+  <div class="footer__top">
+    <div class="footer__cta-block">
+      <p class="footer__headline" aria-label="Ιστοσελίδες που μεγαλώνουν επιχειρήσεις.">
+        <span class="footer__headline-visual" aria-hidden="true">
+          <span class="footer__headline-word">
+            <span class="footer__headline-letter" style="--letter-index: 0">Ι</span>
+            <span class="footer__headline-letter" style="--letter-index: 1">σ</span>
+            <span class="footer__headline-letter" style="--letter-index: 2">τ</span>
+            <span class="footer__headline-letter" style="--letter-index: 3">ο</span>
+            <span class="footer__headline-letter" style="--letter-index: 4">σ</span>
+            <span class="footer__headline-letter" style="--letter-index: 5">ε</span>
+            <span class="footer__headline-letter" style="--letter-index: 6">λ</span>
+            <span class="footer__headline-letter" style="--letter-index: 7">ί</span>
+            <span class="footer__headline-letter" style="--letter-index: 8">δ</span>
+            <span class="footer__headline-letter" style="--letter-index: 9">ε</span>
+            <span class="footer__headline-letter" style="--letter-index: 10">ς</span>
+          </span>
+          <span class="footer__headline-word">
+            <span class="footer__headline-letter" style="--letter-index: 11">π</span>
+            <span class="footer__headline-letter" style="--letter-index: 12">ο</span>
+            <span class="footer__headline-letter" style="--letter-index: 13">υ</span>
+          </span>
+          <span class="footer__headline-word">
+            <span class="footer__headline-letter" style="--letter-index: 14">μ</span>
+            <span class="footer__headline-letter" style="--letter-index: 15">ε</span>
+            <span class="footer__headline-letter" style="--letter-index: 16">γ</span>
+            <span class="footer__headline-letter" style="--letter-index: 17">α</span>
+            <span class="footer__headline-letter" style="--letter-index: 18">λ</span>
+            <span class="footer__headline-letter" style="--letter-index: 19">ώ</span>
+            <span class="footer__headline-letter" style="--letter-index: 20">ν</span>
+            <span class="footer__headline-letter" style="--letter-index: 21">ο</span>
+            <span class="footer__headline-letter" style="--letter-index: 22">υ</span>
+            <span class="footer__headline-letter" style="--letter-index: 23">ν</span>
+          </span>
+          <span class="footer__headline-word">
+            <span class="footer__headline-letter" style="--letter-index: 24">ε</span>
+            <span class="footer__headline-letter" style="--letter-index: 25">π</span>
+            <span class="footer__headline-letter" style="--letter-index: 26">ι</span>
+            <span class="footer__headline-letter" style="--letter-index: 27">χ</span>
+            <span class="footer__headline-letter" style="--letter-index: 28">ε</span>
+            <span class="footer__headline-letter" style="--letter-index: 29">ι</span>
+            <span class="footer__headline-letter" style="--letter-index: 30">ρ</span>
+            <span class="footer__headline-letter" style="--letter-index: 31">ή</span>
+            <span class="footer__headline-letter" style="--letter-index: 32">σ</span>
+            <span class="footer__headline-letter" style="--letter-index: 33">ε</span>
+            <span class="footer__headline-letter" style="--letter-index: 34">ι</span>
+            <span class="footer__headline-letter" style="--letter-index: 35">ς</span>
+            <span class="footer__headline-letter" style="--letter-index: 36">.</span>
+          </span>
+        </span>
+      </p>
+      <div class="footer__cta-actions">
+        <a class="footer__pill" routerLink="/contact">Μίλησε μαζί μας</a>
+        <a class="footer__arrow" routerLink="/contact" aria-label="Μίλησε μαζί μας"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
     </div>
 
-    <div>
-      <h2>Υπηρεσίες</h2>
-      @for (service of services; track service.slug) {
-        <a [routerLink]="['/ypiresies', service.slug]">{{ service.name }}</a>
-      }
-    </div>
-  </nav>
-  <div class="footer__bottom">
-    <span>© 2026 EON Group. Με επιφύλαξη παντός δικαιώματος.</span>
-    <div>
-      <a routerLink="/about">Σχετικά</a>
-      <a routerLink="/" fragment="services">Υπηρεσίες</a>
-      <a routerLink="/work">Έργα</a>
-      <a routerLink="/" fragment="pricing">Πακέτα</a>
-      <a routerLink="/contact">Επικοινωνία</a>
+    <nav class="footer__nav" aria-label="Πλοήγηση footer">
+      <div class="footer__link-column">
+        <h2>Navigate</h2>
+        <a routerLink="/about">Σχετικά</a>
+        <a routerLink="/" fragment="services">Υπηρεσίες</a>
+        <a routerLink="/work">Έργα</a>
+        <a routerLink="/" fragment="pricing">Πακέτα</a>
+        <a routerLink="/contact">Επικοινωνία</a>
+      </div>
+
+      <div class="footer__link-column">
+        <h2>Connect</h2>
+        <a href="mailto:eongroupgr@gmail.com">Email</a>
+        <a href="tel:+306946934533">Τηλέφωνο</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="X">X</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+    </nav>
+
+    <a class="footer__back-top" href="#top" aria-label="Πίσω στην κορυφή"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+  </div>
+
+  <div class="footer__brand-row" aria-label="EON Group">
+    <span class="footer__brand-wordmark" aria-hidden="true">
+      <span class="footer__brand-letter" style="--letter-index: 0">E</span>
+      <span class="footer__brand-letter" style="--letter-index: 1">O</span>
+      <span class="footer__brand-letter" style="--letter-index: 2">N</span>
+      <span class="footer__brand-space" aria-hidden="true"></span>
+      <span class="footer__brand-letter" style="--letter-index: 3">G</span>
+      <span class="footer__brand-letter" style="--letter-index: 4">r</span>
+      <span class="footer__brand-letter" style="--letter-index: 5">o</span>
+      <span class="footer__brand-letter" style="--letter-index: 6">u</span>
+      <span class="footer__brand-letter" style="--letter-index: 7">p</span>
+    </span>
+  </div>
+
+  <div class="footer__legal">
+    <span>© 2026 EON Group. All rights reserved.</span>
+    <div class="footer__contact-line">
+      <a href="mailto:eongroupgr@gmail.com">eongroupgr@gmail.com</a>
+      <a href="tel:+306946934533">+30 6946934533</a>
     </div>
   </div>
 </footer>

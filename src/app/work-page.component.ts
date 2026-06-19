@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ContactSectionComponent } from './contact-section.component';
 import { SiteFooterComponent } from './site-footer.component';
 import { SiteNavComponent } from './site-nav.component';
 
@@ -19,7 +18,7 @@ type ProjectItem = {
 @Component({
   selector: 'app-work-page',
   standalone: true,
-  imports: [SiteNavComponent, ContactSectionComponent, SiteFooterComponent],
+  imports: [SiteNavComponent, SiteFooterComponent],
   templateUrl: './work-page.component.html'
 })
 export class WorkPageComponent {

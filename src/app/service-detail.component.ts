@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, inject
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ContactSectionComponent } from './contact-section.component';
 import { ServiceDetail, serviceDetails } from './service-content';
 import { SiteFooterComponent } from './site-footer.component';
 import { SiteNavComponent } from './site-nav.component';
@@ -10,7 +9,7 @@ import { SiteNavComponent } from './site-nav.component';
 @Component({
   selector: 'app-service-detail',
   standalone: true,
-  imports: [RouterLink, SiteNavComponent, ContactSectionComponent, SiteFooterComponent],
+  imports: [RouterLink, SiteNavComponent, SiteFooterComponent],
   templateUrl: './service-detail.component.html'
 })
 export class ServiceDetailComponent implements AfterViewInit, OnDestroy, OnInit {
