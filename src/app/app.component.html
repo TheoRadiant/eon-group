@@ -1,4 +1,4 @@
-<main class="site-shell">
+<main class="site-shell" id="main-content" tabindex="-1">
   <header class="hero" id="top">
     <div class="hero__content">
       <div class="hero__copy">
@@ -230,6 +230,7 @@
           class="pricing-category-toggle__button"
           [class.is-active]="selectedPricingCategoryIndex === index"
           type="button"
+          [attr.aria-pressed]="selectedPricingCategoryIndex === index"
           (click)="selectPricingCategory(index)"
         >
           {{ category.name }}
@@ -256,6 +257,7 @@
               class="pricing-control__option"
               [class.is-active]="selectedPricingIndex === index"
               type="button"
+              [attr.aria-pressed]="selectedPricingIndex === index"
               (click)="selectPricingPackage(index)"
             >
               <span>{{ pricingPackage.name }}</span>
@@ -267,6 +269,7 @@
         <input
           class="pricing-slider"
           type="range"
+          aria-label="Επιλογή πακέτου"
           min="0"
           [attr.max]="selectedPricingCategory.packages.length - 1"
           step="1"

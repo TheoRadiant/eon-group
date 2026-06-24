@@ -12,8 +12,12 @@ export class ContactSectionComponent {
   contactStatus: ContactFormStatus = 'idle';
 
   get contactStatusMessage(): string {
+    if (this.contactStatus === 'sending') {
+      return 'Στέλνουμε το μήνυμά σου...';
+    }
+
     if (this.contactStatus === 'sent') {
-      return 'Το μήνυμα στάλθηκε. Θα επικοινωνήσουμε σύντομα.';
+      return 'Ευχαριστούμε! Το μήνυμα στάλθηκε επιτυχώς. Θα επικοινωνήσουμε σύντομα.';
     }
 
     if (this.contactStatus === 'error') {

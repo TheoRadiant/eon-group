@@ -1,10 +1,10 @@
-<main class="site-shell interior-page work-page">
+<main class="site-shell interior-page work-page" id="main-content" tabindex="-1">
   <header class="work-page__nav-band" aria-hidden="true"></header>
 
   <section class="work-section work-page__list" id="work" aria-labelledby="work-title">
     <div class="work-header">
       <p class="section-label" data-reveal>Έργα</p>
-      <h2 id="work-title" data-reveal style="--reveal-delay: 110ms"><span class="work-title__line">Έργα με δομή, ταχύτητα</span><span class="work-title__line">και ξεκάθαρο σκοπό.</span></h2>
+      <h1 id="work-title" data-reveal style="--reveal-delay: 110ms"><span class="work-title__line">Έργα με δομή, ταχύτητα</span><span class="work-title__line">και ξεκάθαρο σκοπό.</span></h1>
     </div>
 
     <div class="work-list">
@@ -19,7 +19,7 @@
               </div>
               <div class="screen-shell__body" [class.screen-shell__body--image]="project.image">
                 @if (project.image) {
-                  <img class="screen-image" [src]="project.image" [alt]="project.imageAlt ?? project.name">
+                  <img class="screen-image" [src]="project.image" [alt]="project.imageAlt">
                 } @else {
                   <div class="screen-hero"></div>
                   <div class="screen-copy">
@@ -57,11 +57,11 @@
             <p class="work-description">{{ project.description }}</p>
             <a
               class="text-link"
-              [href]="project.link ?? '/contact'"
+              [href]="project.link"
               [attr.target]="project.link ? '_blank' : null"
               [attr.rel]="project.link ? 'noopener noreferrer' : null"
             >
-              {{ project.linkLabel ?? 'Συζήτησε παρόμοιο project' }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              {{ project.linkLabel }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
             </a>
           </div>
         </article>

@@ -55,6 +55,15 @@ function cleanText(value, maxLength) {
     .slice(0, maxLength);
 }
 
+function cleanList(value, maxItems, maxLength) {
+  const values = Array.isArray(value) ? value : [value];
+
+  return values
+    .map((item) => cleanText(item, maxLength))
+    .filter(Boolean)
+    .slice(0, maxItems);
+}
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -95,6 +104,9 @@ module.exports = async function contactHandler(req, res) {
 
     const name = cleanText(body.name, 120);
     const email = cleanText(body.email, 180);
+    const phone = cleanText(body.phone, 80);
+    const services = cleanList(body.services, 6, 80);
+    const serviceSummary = services.length > 0 ? services.join(', ') : 'Not specified';
     const message = String(body.message ?? '').trim().slice(0, 5000);
 
     if (!name || !email || !message || !EMAIL_PATTERN.test(email)) {
@@ -126,6 +138,8 @@ module.exports = async function contactHandler(req, res) {
       '',
       `Name: ${name}`,
       `Email: ${email}`,
+      `Phone: ${phone || 'Not provided'}`,
+      `Services: ${serviceSummary}`,
       '',
       'Message:',
       message
@@ -134,6 +148,8 @@ module.exports = async function contactHandler(req, res) {
       <h2>New contact form submission</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>
+      <p><strong>Services:</strong> ${escapeHtml(serviceSummary)}</p>
       <p><strong>Message:</strong></p>
       <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
     `;

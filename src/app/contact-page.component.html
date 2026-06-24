@@ -1,4 +1,4 @@
-<main class="site-shell contact-page">
+<main class="site-shell contact-page" id="main-content" tabindex="-1">
   <header class="contact-page__hero">
     <div class="contact-page__hero-grid">
       <div class="contact-page__copy">
@@ -29,12 +29,46 @@
           Email
           <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
         </label>
+        <fieldset class="service-pill-field" aria-label="Υπηρεσίες ενδιαφέροντος">
+          <legend>Τι σε ενδιαφέρει;</legend>
+          <div class="service-pill-list">
+            <label class="service-pill">
+              <input type="checkbox" name="services" value="Website Design">
+              <span>Website Design</span>
+            </label>
+            <label class="service-pill">
+              <input type="checkbox" name="services" value="Web Support">
+              <span>Web Support</span>
+            </label>
+            <label class="service-pill">
+              <input type="checkbox" name="services" value="Digital Marketing">
+              <span>Digital Marketing</span>
+            </label>
+          </div>
+        </fieldset>
         <label>
           Τι χρειάζεσαι;
           <textarea name="message" rows="5" placeholder="Νέα ιστοσελίδα, eshop, SEO, redesign, custom λύση..." required></textarea>
         </label>
         <input class="contact-form__trap" type="text" name="company" autocomplete="off" tabindex="-1" aria-hidden="true">
-        <p class="contact-form__status" aria-live="polite" [hidden]="contactStatus === 'idle'">{{ contactStatusMessage }}</p>
+        <p
+          class="contact-form__status"
+          [class.contact-form__status--success]="contactStatus === 'sent'"
+          [class.contact-form__status--error]="contactStatus === 'error'"
+          [class.contact-form__status--sending]="contactStatus === 'sending'"
+          aria-live="polite"
+          [attr.role]="contactStatus === 'error' ? 'alert' : 'status'"
+          [hidden]="contactStatus === 'idle'"
+        >
+          <i
+            class="fa-solid"
+            [class.fa-check]="contactStatus === 'sent'"
+            [class.fa-triangle-exclamation]="contactStatus === 'error'"
+            [class.fa-spinner]="contactStatus === 'sending'"
+            aria-hidden="true"
+          ></i>
+          <span>{{ contactStatusMessage }}</span>
+        </p>
         <button class="button button--accent" type="submit" [disabled]="contactStatus === 'sending'">{{ contactStatus === 'sending' ? 'Αποστολή...' : 'Αποστολή ενδιαφέροντος' }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></button>
       </form>
     </div>

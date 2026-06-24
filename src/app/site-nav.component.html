@@ -5,22 +5,22 @@
   </a>
 
   <div class="nav__links">
-    <a routerLink="/about">Σχετικά</a>
+    <a routerLink="/about" routerLinkActive="is-active" ariaCurrentWhenActive="page">Σχετικά</a>
     <div class="nav__item nav__item--mega">
       <a routerLink="/" fragment="services">Υπηρεσίες</a>
-      <div class="nav__mega" role="menu" aria-label="Υπηρεσίες">
+      <div class="nav__mega" aria-label="Υπηρεσίες">
         <p>Όλες οι υπηρεσίες</p>
         @for (service of services; track service.slug) {
-          <a class="nav__mega-link" [routerLink]="['/ypiresies', service.slug]" role="menuitem">
+          <a class="nav__mega-link" [routerLink]="['/ypiresies', service.slug]" routerLinkActive="is-active" ariaCurrentWhenActive="page">
             <span>{{ service.name }}</span>
             <small>{{ service.description }}</small>
           </a>
         }
       </div>
     </div>
-    <a routerLink="/work">Έργα</a>
+    <a routerLink="/work" routerLinkActive="is-active" ariaCurrentWhenActive="page">Έργα</a>
     <a routerLink="/" fragment="pricing">Πακέτα</a>
-    <a routerLink="/contact">Επικοινωνία</a>
+    <a routerLink="/contact" routerLinkActive="is-active" ariaCurrentWhenActive="page">Επικοινωνία</a>
   </div>
 
   <button
@@ -34,7 +34,7 @@
     <b>Μενού</b>
   </button>
 
-  <a class="button button--outline nav__cta" routerLink="/contact">Ξεκίνα Project</a>
+  <button class="button button--outline nav__cta" type="button" (click)="openLeadDialog()">Ξεκίνα Project</button>
 </nav>
 
 @if (mobileMenuOpen) {
@@ -53,24 +53,177 @@
 
       <div class="mobile-menu__group">
         <p>Πλοήγηση</p>
-        <a routerLink="/about" (click)="closeMobileMenu()">Σχετικά</a>
+        <a routerLink="/about" routerLinkActive="is-active" ariaCurrentWhenActive="page" (click)="closeMobileMenu()">Σχετικά</a>
         <a routerLink="/" fragment="services" (click)="closeMobileMenu()">Υπηρεσίες</a>
-        <a routerLink="/work" (click)="closeMobileMenu()">Έργα</a>
+        <a routerLink="/work" routerLinkActive="is-active" ariaCurrentWhenActive="page" (click)="closeMobileMenu()">Έργα</a>
         <a routerLink="/" fragment="pricing" (click)="closeMobileMenu()">Πακέτα</a>
-        <a routerLink="/contact" (click)="closeMobileMenu()">Επικοινωνία</a>
+        <a routerLink="/contact" routerLinkActive="is-active" ariaCurrentWhenActive="page" (click)="closeMobileMenu()">Επικοινωνία</a>
       </div>
 
       <div class="mobile-menu__group mobile-menu__group--services">
         <p>Υπηρεσίες</p>
         @for (service of services; track service.slug) {
-          <a [routerLink]="['/ypiresies', service.slug]" (click)="closeMobileMenu()">
+          <a [routerLink]="['/ypiresies', service.slug]" routerLinkActive="is-active" ariaCurrentWhenActive="page" (click)="closeMobileMenu()">
             <span>{{ service.name }}</span>
             <small>{{ service.description }}</small>
           </a>
         }
       </div>
 
-      <a class="button button--accent mobile-menu__cta" routerLink="/contact" (click)="closeMobileMenu()">Ζήτησε πρόταση <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      <button class="button button--accent mobile-menu__cta" type="button" (click)="openLeadDialog()">Ζήτησε πρόταση <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></button>
     </div>
+  </div>
+}
+
+@if (leadDialogOpen) {
+  <div class="lead-dialog" role="dialog" aria-modal="true" aria-labelledby="lead-dialog-title" (keydown)="onLeadDialogKeydown($event)">
+    <button class="lead-dialog__backdrop" type="button" aria-label="Κλείσιμο φόρμας" (click)="closeLeadDialog()"></button>
+
+    <section #leadDialogPanel class="lead-dialog__panel" tabindex="-1">
+      <button #leadDialogClose class="lead-dialog__close" type="button" aria-label="Κλείσιμο φόρμας" (click)="closeLeadDialog()">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+
+      <header class="lead-dialog__top">
+        <a class="brand" routerLink="/" aria-label="EON Group αρχική" (click)="closeLeadDialog()">
+          <span class="brand__name">EON</span>
+          <span class="brand__accent">Group</span>
+        </a>
+        <span>Project intake</span>
+      </header>
+
+      <div class="lead-dialog__layout">
+        <aside class="lead-dialog__intro">
+          <div>
+            <h2 id="lead-dialog-title">{{ leadDialogTitle }}</h2>
+          </div>
+
+          <div class="lead-dialog__progress" aria-label="Πρόοδος φόρμας">
+            <span><i [style.width.%]="leadProgress"></i></span>
+            <ol>
+              <li [class.is-active]="leadStep === 1 && leadFormStatus !== 'sent'" [class.is-complete]="leadStep > 1 || leadFormStatus === 'sent'">Υπηρεσία</li>
+              <li [class.is-active]="leadStep === 2 && leadFormStatus !== 'sent'" [class.is-complete]="leadStep > 2 || leadFormStatus === 'sent'">Στοιχεία</li>
+              <li [class.is-active]="leadStep === 3 && leadFormStatus !== 'sent'" [class.is-complete]="leadFormStatus === 'sent'">Τηλέφωνο</li>
+            </ol>
+          </div>
+
+          
+        </aside>
+
+        <div class="lead-dialog__stage">
+          @if (leadFormStatus === 'sent') {
+            <div class="lead-dialog__success" aria-live="polite">
+              <span><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+              <p>Λάβαμε το αίτημά σου για {{ leadServiceLabel }} και θα επικοινωνήσουμε σύντομα στο {{ leadPhone }}.</p>
+              <button class="button lead-dialog__submit" type="button" (click)="closeLeadDialog()">Κλείσιμο</button>
+            </div>
+          } @else {
+            @if (leadStep === 1) {
+              <section class="lead-dialog__step">
+                <div class="lead-choice-grid">
+                  @for (option of leadServiceOptions; track option.value) {
+                    <button
+                      class="lead-choice"
+                      type="button"
+                      [class.is-selected]="leadSelectedService === option.value"
+                      [attr.aria-pressed]="leadSelectedService === option.value"
+                      (click)="selectLeadService(option.value)"
+                    >
+                      @switch (option.value) {
+                        @case ('Website Design') {
+                          <i class="fa-solid fa-display" aria-hidden="true"></i>
+                        }
+                        @case ('Web Support') {
+                          <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+                        }
+                        @case ('Digital Marketing') {
+                          <i class="fa-solid fa-bullhorn" aria-hidden="true"></i>
+                        }
+                        @default {
+                          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        }
+                      }
+                      <span>{{ option.title }}</span>
+                      <small>{{ option.description }}</small>
+                    </button>
+                  }
+                </div>
+
+                @if (leadSelectedService === 'Other') {
+                  <label class="lead-dialog__field">
+                    Γράψε μας τι χρειάζεσαι
+                    <input type="text" [value]="leadOtherService" (input)="updateLeadOtherService($any($event.target).value)" placeholder="Π.χ. CRM, booking system, automations">
+                  </label>
+                }
+
+                <div class="lead-dialog__actions">
+                  <button class="button lead-dialog__submit" type="button" [disabled]="!canContinueFromServiceStep" (click)="continueFromServiceStep()">
+                    Συνέχεια
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </section>
+            }
+
+            @if (leadStep === 2) {
+              <section class="lead-dialog__step">
+                <form class="lead-dialog__step-form" (submit)="saveLeadIdentity($event, leadNameInput.value, leadEmailInput.value)">
+                  <label class="lead-dialog__field">
+                    Όνομα
+                    <input #leadNameInput type="text" autocomplete="name" [value]="leadName" placeholder="Το όνομά σου" required>
+                  </label>
+                  <label class="lead-dialog__field">
+                    Email
+                    <input #leadEmailInput type="email" autocomplete="email" [value]="leadEmail" placeholder="you@example.com" required>
+                  </label>
+                  <div class="lead-dialog__actions">
+                    <button class="button lead-dialog__ghost" type="button" (click)="goToLeadStep(1)">Πίσω</button>
+                    <button class="button lead-dialog__submit" type="submit">
+                      Συνέχεια
+                      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </form>
+              </section>
+            }
+
+            @if (leadStep === 3) {
+              <section class="lead-dialog__step">
+                <p class="lead-dialog__summary">Ενδιαφέρον: <strong>{{ leadServiceLabel }}</strong></p>
+                <form class="lead-dialog__step-form" (submit)="sendLeadFlow($event, leadPhoneInput.value)">
+                  <label class="lead-dialog__field">
+                    Τηλέφωνο
+                    <input #leadPhoneInput type="tel" autocomplete="tel" [value]="leadPhone" placeholder="+30 69..." required>
+                  </label>
+                  <p
+                    class="contact-form__status lead-dialog__status"
+                    [class.contact-form__status--error]="leadFormStatus === 'error'"
+                    [class.contact-form__status--sending]="leadFormStatus === 'sending'"
+                    aria-live="polite"
+                    [attr.role]="leadFormStatus === 'error' ? 'alert' : 'status'"
+                    [hidden]="leadFormStatus === 'idle'"
+                  >
+                    <i
+                      class="fa-solid"
+                      [class.fa-triangle-exclamation]="leadFormStatus === 'error'"
+                      [class.fa-spinner]="leadFormStatus === 'sending'"
+                      aria-hidden="true"
+                    ></i>
+                    <span>{{ leadFormStatusMessage }}</span>
+                  </p>
+                  <div class="lead-dialog__actions">
+                    <button class="button lead-dialog__ghost" type="button" [disabled]="leadFormStatus === 'sending'" (click)="goToLeadStep(2)">Πίσω</button>
+                    <button class="button lead-dialog__submit" type="submit" [disabled]="leadFormStatus === 'sending'">
+                      {{ leadFormStatus === 'sending' ? 'Αποστολή...' : 'Αποστολή' }}
+                      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </form>
+              </section>
+            }
+          }
+        </div>
+      </div>
+    </section>
   </div>
 }
