@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 
 import { ServiceSummary, serviceSummaries } from './service-content';
 import { SiteFooterComponent } from './site-footer.component';
-import { SiteNavComponent } from './site-nav.component';
 
 type ProjectItem = {
   number: string;
@@ -48,7 +47,7 @@ type PricingCategory = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, SiteNavComponent, SiteFooterComponent],
+  imports: [RouterLink, SiteFooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -129,14 +128,18 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     const getOpenFrame = () => {
       if (window.innerWidth <= 700) {
-        return { frame: 1.1, radius: 12 };
+        return { frame: 0, radius: 0 };
       }
 
       if (window.innerWidth <= 960) {
-        return { frame: 1.35, radius: 14 };
+        return { frame: 0.96, radius: 10 };
       }
 
-      return { frame: 1.75, radius: 16 };
+      if (window.innerHeight <= 800) {
+        return { frame: 1, radius: 11 };
+      }
+
+      return { frame: 1.5, radius: 16 };
     };
 
     const updateHeroFrame = () => {

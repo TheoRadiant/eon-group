@@ -4,12 +4,11 @@ import { Subscription } from 'rxjs';
 
 import { ServiceDetail, serviceDetails } from './service-content';
 import { SiteFooterComponent } from './site-footer.component';
-import { SiteNavComponent } from './site-nav.component';
 
 @Component({
   selector: 'app-service-detail',
   standalone: true,
-  imports: [RouterLink, SiteNavComponent, SiteFooterComponent],
+  imports: [RouterLink, SiteFooterComponent],
   templateUrl: './service-detail.component.html'
 })
 export class ServiceDetailComponent implements AfterViewInit, OnDestroy, OnInit {

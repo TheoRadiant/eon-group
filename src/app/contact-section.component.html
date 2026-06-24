@@ -6,24 +6,26 @@
       Στείλε μας λίγες πληροφορίες για την επιχείρηση, τις υπηρεσίες και τον στόχο σου. Θα επιστρέψουμε με καθαρή πρόταση και επόμενα βήματα.
     </p>
     <div class="contact-details" data-reveal style="--reveal-delay: 260ms">
-      <a href="mailto:hello@eongroup.gr">hello@eongroup.gr</a>
+      <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
       <span>Ελλάδα · Απομακρυσμένες συνεργασίες σε όλη την Ελλάδα</span>
     </div>
   </div>
 
-  <form class="contact-form" aria-label="Φόρμα επικοινωνίας" data-reveal="visual" style="--reveal-delay: 160ms">
+  <form class="contact-form" aria-label="Φόρμα επικοινωνίας" data-reveal="visual" style="--reveal-delay: 160ms" (submit)="sendContactEmail($event)">
     <label>
       Όνομα
-      <input type="text" name="name" autocomplete="name" placeholder="Το όνομά σου">
+      <input type="text" name="name" autocomplete="name" placeholder="Το όνομά σου" required>
     </label>
     <label>
       Email
-      <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+      <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
     </label>
     <label>
       Τι χρειάζεσαι;
-      <textarea name="message" rows="5" placeholder="Νέα ιστοσελίδα, ανασχεδιασμός, SEO, καμπάνιες..."></textarea>
+      <textarea name="message" rows="5" placeholder="Νέα ιστοσελίδα, ανασχεδιασμός, SEO, καμπάνιες..." required></textarea>
     </label>
-    <button class="button button--accent" type="button">Αποστολή ενδιαφέροντος <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></button>
+    <input class="contact-form__trap" type="text" name="company" autocomplete="off" tabindex="-1" aria-hidden="true">
+    <p class="contact-form__status" aria-live="polite" [hidden]="contactStatus === 'idle'">{{ contactStatusMessage }}</p>
+    <button class="button button--accent" type="submit" [disabled]="contactStatus === 'sending'">{{ contactStatus === 'sending' ? 'Αποστολή...' : 'Αποστολή ενδιαφέροντος' }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></button>
   </form>
 </section>

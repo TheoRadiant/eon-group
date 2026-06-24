@@ -3,5 +3,7 @@ dist/
 build/
 .next/
 .env
-.env.local
+.env.*
+!.env.example
+.vercel
 .DS_Store

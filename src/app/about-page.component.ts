@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { SiteFooterComponent } from './site-footer.component';
-import { SiteNavComponent } from './site-nav.component';
 
 @Component({
   selector: 'app-about-page',
   standalone: true,
-  imports: [RouterLink, SiteNavComponent, SiteFooterComponent],
+  imports: [RouterLink, SiteFooterComponent],
   templateUrl: './about-page.component.html'
 })
 export class AboutPageComponent {

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { SiteFooterComponent } from './site-footer.component';
-import { SiteNavComponent } from './site-nav.component';
 
 type ProjectItem = {
   number: string;
@@ -18,7 +17,7 @@ type ProjectItem = {
 @Component({
   selector: 'app-work-page',
   standalone: true,
-  imports: [SiteNavComponent, SiteFooterComponent],
+  imports: [SiteFooterComponent],
   templateUrl: './work-page.component.html'
 })
 export class WorkPageComponent {
