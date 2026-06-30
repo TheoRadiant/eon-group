@@ -41,14 +41,14 @@
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Μενού πλοήγησης">
     <button class="mobile-menu__backdrop" type="button" aria-label="Κλείσιμο μενού" (click)="closeMobileMenu()"></button>
 
-    <div class="mobile-menu__panel">
+    <div #mobileMenuPanel class="mobile-menu__panel" tabindex="-1" (keydown)="onMobileMenuKeydown($event)">
       <div class="mobile-menu__top">
         <a class="brand" routerLink="/" aria-label="EON Group αρχική" (click)="closeMobileMenu()">
           <span class="brand__name">EON</span>
           <span class="brand__accent">Group</span>
         </a>
 
-        <button class="mobile-menu__close" type="button" aria-label="Κλείσιμο μενού" (click)="closeMobileMenu()">Κλείσιμο</button>
+        <button #mobileMenuClose class="mobile-menu__close" type="button" aria-label="Κλείσιμο μενού" (click)="closeMobileMenu()">Κλείσιμο</button>
       </div>
 
       <div class="mobile-menu__group">

@@ -26,6 +26,8 @@ type LeadServiceOption = {
 })
 export class SiteNavComponent implements OnDestroy, OnInit {
   private readonly router = inject(Router);
+  @ViewChild('mobileMenuPanel') private mobileMenuPanel?: ElementRef<HTMLElement>;
+  @ViewChild('mobileMenuClose') private mobileMenuClose?: ElementRef<HTMLButtonElement>;
   @ViewChild('leadDialogPanel') private leadDialogPanel?: ElementRef<HTMLElement>;
   @ViewChild('leadDialogClose') private leadDialogClose?: ElementRef<HTMLButtonElement>;
   readonly leadServiceOptions: LeadServiceOption[] = [
@@ -68,6 +70,7 @@ export class SiteNavComponent implements OnDestroy, OnInit {
   navHidden = false;
   navScrolled = false;
   private lastScrollY = 0;
+  private previousMobileFocus?: HTMLElement | null;
   private previousFocus?: HTMLElement | null;
   private routeSubscription?: Subscription;
 
@@ -115,12 +118,37 @@ export class SiteNavComponent implements OnDestroy, OnInit {
   }
 
   toggleMobileMenu(): void {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
+    if (this.mobileMenuOpen) {
+      this.closeMobileMenu();
+      return;
+    }
+
+    if (typeof document !== 'undefined') {
+      this.previousMobileFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      document.body.style.overflow = 'hidden';
+    }
+
+    this.mobileMenuOpen = true;
     this.navHidden = false;
+
+    if (typeof window !== 'undefined') {
+      window.setTimeout(() => this.mobileMenuClose?.nativeElement.focus(), 0);
+    }
   }
 
   closeMobileMenu(): void {
+    const shouldRestoreFocus = this.mobileMenuOpen;
     this.mobileMenuOpen = false;
+
+    if (!this.leadDialogOpen && typeof document !== 'undefined') {
+      document.body.style.overflow = '';
+    }
+
+    if (shouldRestoreFocus) {
+      this.previousMobileFocus?.focus();
+    }
+
+    this.previousMobileFocus = null;
   }
 
   get leadFormStatusMessage(): string {
@@ -184,12 +212,15 @@ export class SiteNavComponent implements OnDestroy, OnInit {
   }
 
   openLeadDialog(): void {
+    if (this.mobileMenuOpen) {
+      this.closeMobileMenu();
+    }
+
     if (typeof document !== 'undefined') {
       this.previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       document.body.style.overflow = 'hidden';
     }
 
-    this.mobileMenuOpen = false;
     this.navHidden = false;
     this.resetLeadFlow();
     this.leadDialogOpen = true;
@@ -289,15 +320,47 @@ export class SiteNavComponent implements OnDestroy, OnInit {
       return;
     }
 
+    this.trapFocus(event, panel);
+  }
+
+  onMobileMenuKeydown(event: KeyboardEvent): void {
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const panel = this.mobileMenuPanel?.nativeElement;
+
+    if (!panel) {
+      return;
+    }
+
+    this.trapFocus(event, panel);
+  }
+
+  private resetLeadFlow(): void {
+    this.leadStep = 1;
+    this.leadFormStatus = 'idle';
+    this.leadSelectedService = '';
+    this.leadOtherService = '';
+    this.leadName = '';
+    this.leadEmail = '';
+    this.leadPhone = '';
+  }
+
+  private focusLeadDialog(): void {
+    this.leadDialogClose?.nativeElement.focus();
+  }
+
+  private trapFocus(event: KeyboardEvent, container: HTMLElement): void {
     const focusable = Array.from(
-      panel.querySelectorAll<HTMLElement>(
+      container.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
       )
     ).filter((element) => !element.hasAttribute('hidden') && element.offsetParent !== null);
 
     if (focusable.length === 0) {
       event.preventDefault();
-      panel.focus();
+      container.focus();
       return;
     }
 
@@ -315,20 +378,6 @@ export class SiteNavComponent implements OnDestroy, OnInit {
       event.preventDefault();
       first.focus();
     }
-  }
-
-  private resetLeadFlow(): void {
-    this.leadStep = 1;
-    this.leadFormStatus = 'idle';
-    this.leadSelectedService = '';
-    this.leadOtherService = '';
-    this.leadName = '';
-    this.leadEmail = '';
-    this.leadPhone = '';
-  }
-
-  private focusLeadDialog(): void {
-    this.leadDialogClose?.nativeElement.focus();
   }
 
   private updateNavState(forceVisible = false): void {
